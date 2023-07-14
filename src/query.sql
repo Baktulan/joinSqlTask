@@ -1,0 +1,15 @@
+SELECT distinct City from Customers;
+SELECT * FROM [Employees] where BirthDate between '1950-01-01' and '1960-12-31';
+SELECT SupplierName,Country from Suppliers where Country='France';
+SELECT CustomerName, Address, Country from Customers where Country<>'Spain' and CustomerName like 'A%';
+SELECT * FROM [Customers] where PostalCode='';
+SELECT * FROM [Customers] where City='London' limit 2;
+SELECT FirstName,BirthDate from Employees where LastName like '____';
+SELECT Country, count(*) from Suppliers group by Country;
+SELECT Country, count(*) from Suppliers group by Country having count(*)=1 order by Country;
+SELECT Products.CategoryID,Categories.CategoryName,sum(price) from Products inner join Categories on Products.CategoryID=Categories.CategoryID group by Products.CategoryID, Categories.CategoryName;
+select * from products where categoryId in (6,8) order by Price limit 2;
+SELECT Products.ProductName,Suppliers.SupplierName from Products inner join Suppliers on Products.SupplierID=Suppliers.SupplierID group by Products.ProductName, Suppliers.SupplierName;
+SELECT SupplierName, count(*) from Products inner join Suppliers on Products.SupplierID=Suppliers.SupplierID group by SupplierName order by count(*) desc ;
+SELECT Customers.CustomerName , Employees.FirstName as EmployeerFirstname ,ShipperName  from Orders inner join Customers on Orders.CustomerID=Customers.CustomerID join Employees on Orders.EmployeeID=Employees.EmployeeID join Shippers on Orders.ShipperID=Shippers.ShipperID  group by Customers.CustomerName,Employees.FirstName ,ShipperName;
+SELECT Employees.FirstName,Employees.LastName ,count(Orders.CustomerID) from Orders inner join Employees on Orders.EmployeeID=Employees.EmployeeID group by Employees.FirstName,Employees.LastName;
